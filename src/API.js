@@ -15,7 +15,8 @@ export async function GetTrends() {
 }
 
 export async function GetMoviesByName(keyword) {
-  const URL = `https://api.themoviedb.org/3/keyword/${keyword}/movies?api_key=b5a186c9198f11a4b03fa25aa47ec067&language=en-US&include_adult=false`;
+  const URL = `
+https://api.themoviedb.org/3/search/movie?api_key=b5a186c9198f11a4b03fa25aa47ec067&language=en-US&query=${keyword}&page=1&include_adult=false`;
   try {
     const response = await axios.get(URL);
     const data = await response.data;
@@ -53,7 +54,7 @@ export async function ReviewsByID(id) {
 
   try {
     const response = await axios.get(URL);
-    const data = await response.data.resultsn;
+    const data = await response.data.results;
     return data;
   } catch (error) {
     console.log(error.message);
